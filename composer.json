@@ -1,0 +1,15 @@
+{
+    "name": "nhzex/think-env",
+    "type": "library",
+    "require": {
+        "php": "~7.1 || ^8.0",
+        "topthink/framework": "~6.0.2",
+        "vlucas/phpdotenv": "^5.0",
+        "oscarotero/env": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "HZEX\\Think\\": "src"
+        }
+    }
+}
