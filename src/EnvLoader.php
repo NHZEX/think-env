@@ -6,6 +6,7 @@ use Closure;
 use Dotenv\Dotenv;
 use Env\Env as EnvService;
 use InvalidArgumentException;
+use think\Env;
 
 /**
  * Class Env
@@ -13,7 +14,7 @@ use InvalidArgumentException;
  *
  * 优先使用 $_SERVER https://github.com/vlucas/phpdotenv/issues/446
  */
-class Env extends \think\Env
+class EnvLoader extends Env
 {
     /** @var Dotenv */
     protected $dotenv;
