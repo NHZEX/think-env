@@ -5,7 +5,9 @@ namespace HZEX\Think;
 use Closure;
 use Dotenv\Dotenv;
 use Env\Env as EnvService;
+use HZEX\Think\Event\EnvLoaded;
 use InvalidArgumentException;
+use think\App;
 use think\Env;
 
 /**
@@ -50,13 +52,18 @@ class EnvLoader extends Env
                 EnvService::$options |= EnvService::USE_SERVER_ARRAY;
             }
 
-            $dotenv = Dotenv::createImmutable(dirname($file), basename($file));
-            $this->data = $dotenv->load();
-            $dotenv->ifPresent('APP_DEBUG')->isBoolean();
-            if (self::$verify) {
-                (self::$verify)($dotenv);
-            }
+            $this->dotenv = Dotenv::createImmutable(dirname($file), basename($file));
+            $this->data = $this->dotenv->load();
+
+            $this->loaded();
         }
+    }
+
+    protected function loaded()
+    {
+        $this->dotenv->ifPresent('APP_DEBUG')->isBoolean();
+
+        App::getInstance()->event->trigger(new EnvLoaded($this));
     }
 
     /**
