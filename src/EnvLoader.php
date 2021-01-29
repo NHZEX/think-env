@@ -9,6 +9,7 @@ use HZEX\Think\Event\EnvLoaded;
 use InvalidArgumentException;
 use think\App;
 use think\Env;
+use function call_user_func;
 
 /**
  * Class Env
@@ -25,7 +26,7 @@ class EnvLoader extends Env
 
     protected static $isEnv = true;
 
-    /** @var Closure|null */
+    /** @var callable|null */
     protected static $verify = null;
 
     /**
@@ -62,6 +63,9 @@ class EnvLoader extends Env
     protected function loaded()
     {
         $this->dotenv->ifPresent('APP_DEBUG')->isBoolean();
+        if (self::$verify !== null) {
+            call_user_func(self::$verify, $this->dotenv);
+        }
 
         App::getInstance()->event->trigger(new EnvLoaded($this));
     }
