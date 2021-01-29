@@ -85,7 +85,7 @@ class EnvLoader extends Env
     /**
      * @param string|null $name
      * @param mixed|null  $default
-     * @return array|bool|\Env\string|int|mixed|string|null
+     * @return array|bool|int|string|null
      */
     public function get(string $name = null, $default = null)
     {
