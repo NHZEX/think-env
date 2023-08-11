@@ -1,11 +1,11 @@
 <?php
 
-namespace HZEX\Think;
+namespace Zxin\Think;
 
 use Closure;
 use Dotenv\Dotenv;
 use Env\Env as EnvService;
-use HZEX\Think\Event\EnvLoaded;
+use Zxin\Think\Event\EnvLoaded;
 use InvalidArgumentException;
 use think\App;
 use think\Env;
@@ -19,12 +19,11 @@ use function call_user_func;
  */
 class EnvLoader extends Env
 {
-    /** @var Dotenv */
-    protected $dotenv;
+    protected Dotenv $dotenv;
 
-    protected static $init = false;
+    protected static bool $init = false;
 
-    protected static $isEnv = true;
+    protected static bool $isEnv = true;
 
     /** @var callable|null */
     protected static $verify = null;

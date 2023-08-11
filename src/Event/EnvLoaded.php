@@ -1,20 +1,17 @@
 <?php
 
-namespace HZEX\Think\Event;
+namespace Zxin\Think\Event;
 
 use Dotenv\Dotenv;
-use HZEX\Think\EnvLoader;
+use Zxin\Think\EnvLoader;
 
 class EnvLoaded
 {
-    /** @var EnvLoader */
-    public $env;
+    public EnvLoader $env;
 
-    /** @var Dotenv */
-    public $dotenv;
+    public Dotenv $dotenv;
 
-    /** @var array */
-    public $envData;
+    public array $envData;
 
     public function __construct(EnvLoader $envLoader)
     {
